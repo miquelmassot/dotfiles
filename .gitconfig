@@ -1,0 +1,42 @@
+[user]
+  name = Miquel Massot
+  email = miquel.massot@uib.cat
+[github]
+  user = miquelmassot
+[color]
+  # turn on color
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+[color "branch"]
+  # good looking colors I copy/pasted from somewhere
+  current = green bold
+  local = green
+  remote = red bold
+[color "diff"]
+  # good looking colors I copy/pasted from somewhere
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  # good looking colors I copy/pasted from somewhere
+  added = green bold
+  changed = yellow bold
+  untracked = red
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  ldiff = difftool -t latex
+[difftool.latex]
+	cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+[core]
+	excludesfile = /home/miquel/.gitignore_global
