@@ -34,6 +34,7 @@
   df = diff
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ldiff = difftool -t latex
+  wdiff = diff --color-words
 [difftool.latex]
 	cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
 [difftool]

@@ -106,7 +106,7 @@ fi
 #opencl
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
 export LD_RUN_PATH=$LD_RUN_PATH:/usr/local/cuda/lib64:/usr/local/cuda
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH+$LD_LIBRARY_PATH:}:/usr/local/cuda/lib64:/usr/local/cuda
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
 
 #GIT
 source ~/.git_scripts
@@ -132,12 +132,9 @@ export ROS_PARALLEL_JOBS='-j4 -l4'
 export EDITOR=subl
 export ROSCONSOLE_FORMAT='[${severity}]: ${message}'
 
-#export ROS_PACKAGE_PATH=~/workspace/fuerte:$ROS_PACKAGE_PATH #deprecated
-
 ######################
 # SOURCE ROS VERSION #
 ######################
-#source ~/workspace/fuerte/setup.bash #new rosws procedure
 source ~/workspace/hydro/devel/setup.bash
 
 ################
@@ -160,3 +157,6 @@ fi
 #export ROS_MASTER_URI=http://192.168.1.51:11311
 #export ROS_MASTER_URI=http://pul.uib.es:11311
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
