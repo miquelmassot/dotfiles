@@ -41,3 +41,5 @@
   prompt = false
 [core]
 	excludesfile = /home/miquel/.gitignore_global
+[push]
+	default = matching
