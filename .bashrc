@@ -104,24 +104,24 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 #opencl
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
-export LD_RUN_PATH=$LD_RUN_PATH:/usr/local/cuda/lib64:/usr/local/cuda
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
+#export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
+#export LD_RUN_PATH=$LD_RUN_PATH:/usr/local/cuda/lib64:/usr/local/cuda
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
 
 #GIT
 source ~/.git_scripts
 
 #MATLAB
-export PATH=$PATH:/usr/local/MATLAB/R2012b/bin:/usr/local/cuda/bin:~/bin
+#export PATH=$PATH:/usr/local/MATLAB/R2012b/bin:/usr/local/cuda/bin:~/bin
 
 #GMT
-export GMTHOME=/usr/lib/gmt/bin
-export PATH=$PATH:$GMTHOME
+#export GMTHOME=/usr/lib/gmt/bin
+#export PATH=$PATH:$GMTHOME
 
 #colored xterm
 export TERM=xterm-256color
 
-#uncrustify 
+#uncrustify
 export UNCRUSTIFY_CONFIG=~/.uncrustify_config
 
 #ROS
@@ -135,12 +135,13 @@ export ROSCONSOLE_FORMAT='[${severity}]: ${message}'
 ######################
 # SOURCE ROS VERSION #
 ######################
-source ~/workspace/hydro/devel/setup.bash
+#source ~/workspace/hydro/devel/setup.bash
+source ~/workspace/indigo/devel/setup.bash
 
 ################
 # SETUP ROS IP #
 ################
-export ROS_IP=`ifconfig  | grep 'inet ' | grep -v '127.0.0.1' | cut -d: -f2 | awk '{print $1}'`
+export ROS_IP=`ifconfig  | grep 'inet ' | grep -v '127.0.0.1' | cut -d: -f2 | awk 'END{print $1}'`
 if [[ -z "$ROS_IP" ]]; then
   export ROS_IP=127.0.0.1
 fi
@@ -157,6 +158,17 @@ fi
 #export ROS_MASTER_URI=http://192.168.1.51:11311
 #export ROS_MASTER_URI=http://pul.uib.es:11311
 
+### Add Fritzing!
+export PATH="$PATH:/opt/fritzing"
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+### Add Eagle
+export PATH="$PATH:/opt/eagle/bin"
+
+### OpenCV Brainfucking ROS Compatibility configs
+#export OpenCV_DIR="/home/miquel/lib/opencv/install"
+#export CMAKE_PREFIX_PATH="$OpenCV_DIR:$CMAKE_PREFIX_PATH"
+#export CPATH="$OpenCV_DIR/include:$CPATH"
+#export LD_LIBRARY_PATH="$OpenCV_DIR/lib:$LD_LIBRARY_PATH"
+#export PATH="$OpenCV_DIR/bin:$PATH"
+#export PKG_CONFIG_PATH="$OpenCV_DIR/lib/pkgconfig:$PKG_CONFIG_PATH"
+#export PYTHONPATH="$OpenCV_DIR/lib/python2.7/dist-packages:$PYTHONPATH"

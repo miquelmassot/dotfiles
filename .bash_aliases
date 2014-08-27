@@ -1,15 +1,16 @@
 # BASH aliases 
 
-function imgview-f
+function imgview
 {
   rosrun image_view image_view image:=$1 
 }
 
-function hydro-make-f
+function catmk
 {
-  cd ~/workspace/hydro;
+  OLDDIR=`pwd`;
+  roscd; cd ..;
   catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo $1;
-  cd -
+  cd $OLDDIR;
 }
 
 
@@ -18,7 +19,7 @@ alias ...='cd ../..'
 alias sbash='source ~/.bashrc'
 alias vbash='vi ~/.bashrc'
 alias valias='vi ~/.bash_aliases'
-alias go-indigo='schroot -c indigo_trusty'
+#alias go-indigo='schroot -c indigo_trusty'
 
 alias sshoptimus='ssh -XY -t miquel@opt.uib.es "screen -R miquel -D" '
 alias sshpulgarcito-ros='ssh -XY ros@192.168.1.100'
@@ -28,7 +29,7 @@ alias sshtomate='ssh -XY -t miquel@130.206.76.73 "screen -R miquel -D" '
 alias sshfugu-c='ssh -XY -t ros@192.168.1.181 "screen -R miquel -D" '
 alias sshfugu-c-wifi='ssh -XY -t ros@192.168.1.180 "screen -R miquel -D" '
 alias sshfugu-f='ssh -XY -t user@192.168.1.170 "screen -R miquel -D" '
-alias sshplotter='ssh -XY osl@137.195.182.65'
+alias sshplotter='ssh -XY osl@137.195.182.236'
 alias pingfugu-f='ping 192.168.1.170'
 alias pingfugu-c='ping 192.168.1.181'
 alias pinggirona500='ping 192.168.1.41'
@@ -37,11 +38,11 @@ alias pinggirona500='ping 192.168.1.41'
 alias sync-machines='sudo ntpdate -bu 192.168.1.51'
 
 #alias imgview='rosrun image_view image_view'
-alias imgview='imgview-f'
+#alias imgview='imgview-f'
 
 alias imgview_down='rosrun image_view image_view image:=/stereo_down/left/image_rect_color'
 alias imgview_forward='rosrun image_view image_view image:=/stereo_forward/left/image_rect_color'
-alias hydro-make='hydro-make-f'
+#alias hydro-make='hydro-make-f'
 
 alias techo='rostopic echo'
 alias tlist='rostopic list'
