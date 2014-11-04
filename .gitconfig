@@ -33,13 +33,13 @@
   co = checkout
   df = diff
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  ldiff = difftool -t latex
-  wdiff = diff --color-words
+  ldiff = difftool -y -t latex
+  wdiff = diff --color-words --ignore-all-space
 [difftool.latex]
-	cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
+  cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
 [difftool]
   prompt = false
 [core]
-	excludesfile = /home/miquel/.gitignore_global
+  excludesfile = /home/miquel/.gitignore_global
 [push]
-	default = matching
+  default = matching

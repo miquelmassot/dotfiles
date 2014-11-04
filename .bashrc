@@ -37,7 +37,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -50,10 +50,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+# fi
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[01;32m\]$(__git_ps1 "[%s]")\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W$(__git_ps1 "[%s]")\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -103,20 +108,19 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#opencl
-#export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
-#export LD_RUN_PATH=$LD_RUN_PATH:/usr/local/cuda/lib64:/usr/local/cuda
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda
+#local binaries
+export PATH=/home/miquel/.local/bin:$PATH
 
-#GIT
-source ~/.git_scripts
+#CUDA
+export PATH=/usr/local/cuda-6.5/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib64:$LD_LIBRARY_PATH
+
+#VSFM
+export PATH=$PATH:/home/miquel/opt/vsfm/vsfm/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/miquel/opt/vsfm/vsfm/bin
 
 #MATLAB
 #export PATH=$PATH:/usr/local/MATLAB/R2012b/bin:/usr/local/cuda/bin:~/bin
-
-#GMT
-#export GMTHOME=/usr/lib/gmt/bin
-#export PATH=$PATH:$GMTHOME
 
 #colored xterm
 export TERM=xterm-256color
@@ -135,7 +139,6 @@ export ROSCONSOLE_FORMAT='[${severity}]: ${message}'
 ######################
 # SOURCE ROS VERSION #
 ######################
-#source ~/workspace/hydro/devel/setup.bash
 source ~/workspace/indigo/devel/setup.bash
 
 ################
@@ -163,12 +166,3 @@ export PATH="$PATH:/opt/fritzing"
 
 ### Add Eagle
 export PATH="$PATH:/opt/eagle/bin"
-
-### OpenCV Brainfucking ROS Compatibility configs
-#export OpenCV_DIR="/home/miquel/lib/opencv/install"
-#export CMAKE_PREFIX_PATH="$OpenCV_DIR:$CMAKE_PREFIX_PATH"
-#export CPATH="$OpenCV_DIR/include:$CPATH"
-#export LD_LIBRARY_PATH="$OpenCV_DIR/lib:$LD_LIBRARY_PATH"
-#export PATH="$OpenCV_DIR/bin:$PATH"
-#export PKG_CONFIG_PATH="$OpenCV_DIR/lib/pkgconfig:$PKG_CONFIG_PATH"
-#export PYTHONPATH="$OpenCV_DIR/lib/python2.7/dist-packages:$PYTHONPATH"

@@ -19,6 +19,7 @@ alias ...='cd ../..'
 alias sbash='source ~/.bashrc'
 alias vbash='vi ~/.bashrc'
 alias valias='vi ~/.bash_aliases'
+alias git-remove-deleted='git ls-files --deleted -z | xargs -0 git rm'
 #alias go-indigo='schroot -c indigo_trusty'
 
 alias sshoptimus='ssh -XY -t miquel@opt.uib.es "screen -R miquel -D" '
