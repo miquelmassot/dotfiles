@@ -35,6 +35,7 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ldiff = difftool -y -t latex
   wdiff = diff --color-words --ignore-all-space
+  puff = "pull --ff --ff-only"
 [difftool.latex]
   cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
 [difftool]
@@ -43,3 +44,5 @@
   excludesfile = /home/miquel/.gitignore_global
 [push]
   default = matching
+[merge]
+	ff = true

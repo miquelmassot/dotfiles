@@ -115,9 +115,20 @@ export PATH=/home/miquel/.local/bin:$PATH
 export PATH=/usr/local/cuda-6.5/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib64:$LD_LIBRARY_PATH
 
-#VSFM
-export PATH=$PATH:/home/miquel/opt/vsfm/vsfm/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/miquel/opt/vsfm/vsfm/bin
+#BUNDLER
+export PATH=$PATH:/home/miquel/opt/sfm/bundler_sfm/utils
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/miquel/opt/sfm/bundler_sfm/bin
+
+#GMT
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export PATH=/usr/lib/gmt/bin:$PATH
+
+#VRip
+export LD_LIBRARY_PATH=/home/miquel/lib/vrippack-0.31/lib/linux:$LD_LIBRARY_PATH
+export PATH=/home/miquel/lib/vrippack-0.31/bin:$PATH
+export VRIP_DIR=/home/miquel/lib/vrippack-0.31/src/vrip
+export VRIP_TCL_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tcl8.4
+export VRIP_TK_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tk8.4
 
 #MATLAB
 #export PATH=$PATH:/usr/local/MATLAB/R2012b/bin:/usr/local/cuda/bin:~/bin
@@ -159,7 +170,10 @@ fi
 #export ROS_MASTER_URI=http://192.168.1.181:11311
 #export ROS_MASTER_URI=http://192.168.1.180:11311
 #export ROS_MASTER_URI=http://192.168.1.51:11311
+#export ROS_MASTER_URI=http://192.168.1.205:11311 # Sparus
 #export ROS_MASTER_URI=http://pul.uib.es:11311
+
+#turbot
 
 ### Add Fritzing!
 export PATH="$PATH:/opt/fritzing"
