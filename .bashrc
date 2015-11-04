@@ -110,34 +110,47 @@ fi
 
 #local binaries
 export PATH=/home/miquel/.local/bin:$PATH
-
 #CUDA
-export PATH=/usr/local/cuda-6.5/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-6.5/lib64:$LD_LIBRARY_PATH
-
+export PATH=/usr/local/cuda-7.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib64:$LD_LIBRARY_PATH
+export CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-7.0
 #BUNDLER
 export PATH=$PATH:/home/miquel/opt/sfm/bundler_sfm/utils
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/miquel/opt/sfm/bundler_sfm/bin
-
 #GMT
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export PATH=/usr/lib/gmt/bin:$PATH
-
 #VRip
 export LD_LIBRARY_PATH=/home/miquel/lib/vrippack-0.31/lib/linux:$LD_LIBRARY_PATH
 export PATH=/home/miquel/lib/vrippack-0.31/bin:$PATH
 export VRIP_DIR=/home/miquel/lib/vrippack-0.31/src/vrip
 export VRIP_TCL_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tcl8.4
 export VRIP_TK_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tk8.4
-
 #MATLAB
-#export PATH=$PATH:/usr/local/MATLAB/R2012b/bin:/usr/local/cuda/bin:~/bin
+export PATH=$PATH:/usr/local/MATLAB/R2014b/bin
+#WEKA
+export WEKA_HOME=~/opt/weka-3-6-12
+export PATH=$PATH:~/opt/weka-3-6-12
+export CLASSPATH=$CLASSPATH:~/opt/weka-3-6-12
+### Add Fritzing!
+export PATH="$PATH:/opt/fritzing"
+### Add Eagle
+export PATH="$PATH:/opt/eagle/bin"
+### Add eclipse
+export PATH="$PATH:/opt/eclipse"
+### Add sherlock
+export PATH="$PATH:/home/miquel/opt/sherlock"
+# added by travis gem
+[ -f /home/miquel/.travis/travis.sh ] && source /home/miquel/.travis/travis.sh
 
 #colored xterm
 export TERM=xterm-256color
 
 #uncrustify
 export UNCRUSTIFY_CONFIG=~/.uncrustify_config
+
+# Oculus SDK
+export OCULUS_SDK_ROOT_DIR=~/oculus/oculus_sdk
 
 #ROS
 unset ROS_MASTER_URI
@@ -165,18 +178,11 @@ fi
 ###############
 # EXPERIMENTS #
 ###############
-#export ROS_MASTER_URI=http://192.168.1.160:11311
-#export ROS_MASTER_URI=http://192.168.1.170:11311
 #export ROS_MASTER_URI=http://192.168.1.181:11311
 #export ROS_MASTER_URI=http://192.168.1.180:11311
-#export ROS_MASTER_URI=http://192.168.1.51:11311
 #export ROS_MASTER_URI=http://192.168.1.205:11311 # Sparus
 #export ROS_MASTER_URI=http://pul.uib.es:11311
+#export ROS_MASTER_URI=http://192.168.1.100:11311
 
 #turbot
 
-### Add Fritzing!
-export PATH="$PATH:/opt/fritzing"
-
-### Add Eagle
-export PATH="$PATH:/opt/eagle/bin"

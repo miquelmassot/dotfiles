@@ -1,10 +1,37 @@
-" Kompatibilitätsmodus zu vi abschalten
-set nocompatible
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-call pathogen#infect()
-filetype plugin indent on
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fugitive'
+Plugin 'taketwo/vim-ros'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tyok/nerdtree-ack'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mileszs/ack.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/taglist.vim'
+" Plugin 'xuhdev/vim-latex-live-preview'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 " change the mapleader from \ to ,
 let mapleader=","
@@ -84,28 +111,18 @@ syntax on
 au BufNewFile,BufRead *.launch set filetype=xml
 
 " Colorscheme
-let t_Co=16
+" let t_Co=16
+let g:molokai_original = 1
 set background=dark
-colorscheme Monokai
+colorscheme molokai
 
-" immer die Statuszeile mit dem Dateinamen anzeigen
 set ls=2
-
-" Ersetze Tabulatoren durch Leerzeichen
 set expandtab
-
-" zeigt unten links diverse Positionsinformationen der Schreibmarke
 set ruler
-
-" die Shell, die beim Starten von Programmen aus dem Editor heraus
-" verwendet werden soll
 set shell=/bin/bash
-
-" zeigt beim Schließen von Klammern kurz an, wo sie geöffnet wurde
-
-" zeigt in der Statuszeile an, ob man sich im Einfügemodus (INSERT) oder im
-" Ersetzungsmodus (REPLACE) befindet
 set showmode
+set nostartofline
+set bs=2
 
 " run uncrustify on current file
 map <F5> :%!uncrustify --replace --no-backup -l CPP -q<RETURN>
@@ -114,14 +131,6 @@ map <F5> :%!uncrustify --replace --no-backup -l CPP -q<RETURN>
 map <F7> :tabp <RETURN>
 map <F8> :tabn <RETURN>
 
-" toggle navigation list
-map <F12> :TlistToggle <RETURN>
-
-"  nicht an den Zeilenanfang bei Benutzung von Bild auf und Bild ab gehen
-set nostartofline
-
-" backspace taste
-set bs=2
 
 " highlight long lines
 highlight OverLength ctermbg=DarkBlue ctermfg=white guibg=DarkBlue guifg=white
@@ -134,5 +143,59 @@ match OverLength /\%81v.\+/
 map cn <esc>:cn<cr>
 map cp <esc>:cp<cr>
 
-set path=.,,..,../..,./*,./*/*,../*,~/,~/**,/usr/include/*
+" Setup YCM file
+let g:ycm_confirm_extra_conf = 0
+
+" Restore cursor position, window position, and last search after running a
+" command.
+function! Preserve(command)
+  " Save the last search.
+  let search = @/
+
+  " Save the current cursor position.
+  let cursor_position = getpos('.')
+
+  " Save the current window position.
+  normal! H
+  let window_position = getpos('.')
+  call setpos('.', cursor_position)
+
+  " Execute the command.
+  execute a:command
+
+  " Restore the last search.
+  let @/ = search
+
+  " Restore the previous window position.
+  call setpos('.', window_position)
+  normal! zt
+
+  " Restore the previous cursor position.
+  call setpos('.', cursor_position)
+endfunction
+
+" Specify path to your Uncrustify configuration file.
+let g:uncrustify_cfg_file_path =
+    \ shellescape(fnamemodify('~/.uncrustify.cfg', ':p'))
+
+" Don't forget to add Uncrustify executable to $PATH (on Unix) or 
+" %PATH% (on Windows) for this command to work.
+function! Uncrustify(language)
+  call Preserve(':silent %!uncrustify'
+      \ . ' -q '
+      \ . ' -l ' . a:language
+      \ . ' -c ' . g:uncrustify_cfg_file_path)
+endfunction
+
+" Nerdtree
+let g:nerdtree_tabs_open_on_console_startup=1
+let Tlist_Use_Right_Window = 1
+map <F10> :NERDTreeToggle<cr>
+vmap <F10> <esc>:NERDTreeToggle<cr>
+imap <F10> <esc>:NERDTreeToggle<cr>
+autocmd BufNew * wincmd l
+autocmd vimenter * NERDTree
+autocmd vimenter * wincmd p
+" Navigation list
+map <F12> :TlistToggle <RETURN>
 
