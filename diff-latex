@@ -1,0 +1,58 @@
+#!/bin/bash
+
+# Provide two *.tex files and compile the diff version.
+#
+# In the folder, there must be a "img" folder containing all images
+
+# Warn the user if he doesn't know 
+if [ "$#" -ne 2 ]; then
+    echo "Please provide the two TEX files to diff"
+    exit 
+fi
+
+TMPDIR=$(mktemp -d /tmp/latexdiff.XXXXXX)
+IMGDIR=img
+echo "Looking for auxiliary files..."
+# Copy the latex class and bibliography in the temporal folder
+
+if [ -e *.cls ]; then 
+  echo "Latex class style found!"
+  cp *.cls $TMPDIR/.
+fi 
+
+if [ -e *.bst ]; then 
+  echo "Bibliography style found!"
+  cp *.bst $TMPDIR/.
+fi 
+
+if [ -e *.bib ]; then 
+  echo "Bibliography found!"
+  cp *.bib $TMPDIR/.
+fi 
+
+# Copy all the images. Suppose they all are in a folder called "img"
+if [ ! -d "$IMGDIR" ]; then
+  # Control will enter here if $IMGDIR doesn't exist.
+  echo "It looks like there is no $IMGDIR folder!"
+  echo "Please make sure all images are saved in $IMGDIR folder."
+fi
+
+if [ -d "$IMGDIR" ]; then
+  # Control will enter here if $IMGDIR exists.
+  echo "Folder $IMGDIR found!"
+  cp -r $IMGDIR $TMPDIR/.
+fi
+
+# Compile latex & bibtex
+echo "Compiling, please wait..."
+latexdiff --exclude-textcmd="section,subsection,subsubsection" "$1" "$2" > $TMPDIR/diff.tex
+pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
+pdflatex -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
+cd $TMPDIR 
+bibtex diff.aux > /dev/null 2>&1
+cd - > /dev/null 2>&1
+pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
+# Show the result
+evince $TMPDIR/diff.pdf
+# Remove all generated crap
+rm -rf $TMPDIR
