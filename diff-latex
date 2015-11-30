@@ -4,6 +4,23 @@
 #
 # In the folder, there must be a "img" folder containing all images
 
+function makePdflatex() {
+  echo 'pdflatexing...'
+  pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
+}
+
+function latexDiff() {
+  echo 'latexdiffing...'
+  latexdiff --exclude-textcmd="section,subsection,subsubsection,cite" "$1" "$2" > $TMPDIR/diff.tex
+}
+
+function makeBibtex() {
+  echo 'bibtexing...'
+  cd $TMPDIR 
+  bibtex diff.aux > /dev/null 2>&1
+  cd - > /dev/null 2>&1
+}
+
 # Warn the user if he doesn't know 
 if [ "$#" -ne 2 ]; then
     echo "Please provide the two TEX files to diff"
@@ -45,14 +62,14 @@ fi
 
 # Compile latex & bibtex
 echo "Compiling, please wait..."
-latexdiff --exclude-textcmd="section,subsection,subsubsection" "$1" "$2" > $TMPDIR/diff.tex
-pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
-pdflatex -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
-cd $TMPDIR 
-bibtex diff.aux > /dev/null 2>&1
-cd - > /dev/null 2>&1
-pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
+
+latexDiff $1 $2
+makePdflatex 
+makeBibtex 
+makePdflatex 
+makePdflatex 
+
 # Show the result
 evince $TMPDIR/diff.pdf
 # Remove all generated crap
-rm -rf $TMPDIR
+#rm -rf $TMPDIR
