@@ -38,7 +38,7 @@
   puff = "pull --ff --ff-only"
 	unstage = reset HEAD --
 [difftool.latex]
-  cmd = latexdiff  \"$LOCAL\" \"$REMOTE\"
+  cmd = latexdiff  "$LOCAL" "$REMOTE" "$MERGED"
 [difftool]
   prompt = false
 [core]

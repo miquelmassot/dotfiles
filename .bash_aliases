@@ -5,7 +5,7 @@ function imgview
   rosrun image_view image_view image:=$1 
 }
 
-catkin_make='catkin_make -DCMAKE_BUILD_TYPE=Release'
+catkin_make='catkin_make -DCMAKE_BUILD_TYPE=RelWithDebInfo'
 
 function catmk
 {
@@ -21,6 +21,7 @@ alias sbash='source ~/.bashrc'
 alias vbash='vi ~/.bashrc'
 alias valias='vi ~/.bash_aliases'
 alias git-remove-deleted='git ls-files --deleted -z | xargs -0 git rm'
+alias meshlab='LC_ALL=C meshlab'
 
 alias sshoptimus='ssh -XY -t miquel@opt.uib.es "screen -R miquel -D" '
 alias sshpulgarcito-ros='ssh -XY -p 2200 ros@192.168.1.100'
@@ -58,4 +59,6 @@ alias pulmat='ssh -p 2200 -XY -t miquel@192.168.1.100 "matlab" '
 alias firefox-proxy-uib='ssh -C2qTnN -D 8080 miquel@pul.uib.es'
 
 alias ghostview='evince'
+alias hide_icons='gsettings set org.gnome.desktop.background show-desktop-icons false'
+alias show_icons='gsettings set org.gnome.desktop.background show-desktop-icons true'
 

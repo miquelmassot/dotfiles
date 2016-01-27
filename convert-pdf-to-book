@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z $1 ]
+then
+    echo "Uso: $0 origen [destino]"
+    exit 1
+else
+    SRC=$1
+fi
+
+if [ -z $2 ]
+then
+    DST=`echo "$1" | sed -e 's/.pdf$/-book.pdf/'`
+else
+    DST=$2
+fi
+
+pdf2ps $SRC - | psbook | ps2pdf - $DST
+echo "PDF en formato libro: $DST"

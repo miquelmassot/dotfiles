@@ -5,17 +5,17 @@
 # In the folder, there must be a "img" folder containing all images
 
 function makePdflatex() {
-  echo 'pdflatexing...'
+  echo 'pdflatex...'
   pdflatex  -interaction nonstopmode --shell-escape -output-directory $TMPDIR $TMPDIR/diff.tex > /dev/null 2>&1
 }
 
 function latexDiff() {
-  echo 'latexdiffing...'
-  latexdiff --exclude-textcmd="section,subsection,subsubsection,cite" "$1" "$2" > $TMPDIR/diff.tex
+  echo 'latexdiff...'
+  latexdiff --exclude-textcmd="section,subsection,subsubsection,cite,color" "$1" "$2" > $TMPDIR/diff.tex
 }
 
 function makeBibtex() {
-  echo 'bibtexing...'
+  echo 'bibtex...'
   cd $TMPDIR 
   bibtex diff.aux > /dev/null 2>&1
   cd - > /dev/null 2>&1

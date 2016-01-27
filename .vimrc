@@ -18,6 +18,8 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mileszs/ack.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'mrtazz/DoxygenToolkit.vim'
+Plugin 'kien/ctrlp.vim'
 " Plugin 'xuhdev/vim-latex-live-preview'
 
 " All of your Plugins must be added before the following line
@@ -199,3 +201,30 @@ autocmd vimenter * wincmd p
 " Navigation list
 map <F12> :TlistToggle <RETURN>
 
+" CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" Doxygen Toolkit
+let g:DoxygenToolkit_briefTag_pre="@brief  "
+let g:DoxygenToolkit_paramTag_pre="@param "
+let g:DoxygenToolkit_returnTag="@returns   "
+let g:DoxygenToolkit_blockHeader="-------------------------------"
+let g:DoxygenToolkit_blockFooter="---------------------------------"
+let g:DoxygenToolkit_authorName="Miquel Massot"
+let g:DoxygenToolkit_licenseTag="Copyright (C) 2015 Miquel Massot <miquel.massot@uib.cat>\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "This program is free software; you can redistribute it and/or modify\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "it under the terms of the GNU General Public License as published by\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "the Free Software Foundation; either version 2 of the License, or\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "(at your option) any later version.\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "This program is distributed in the hope that it will be useful,\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "but WITHOUT ANY WARRANTY; without even the implied warranty of\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "GNU General Public License for more details.\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "You should have received a copy of the GNU General Public License\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "along with this program; if not, write to the Free Software\<enter>"
+let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA."

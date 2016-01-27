@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ $# -ne 2 ]; then
+    echo "Two arguments needed: INPUT OUTPUT"
+    exit 1
+fi
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$2 $1
