@@ -1,9 +1,35 @@
 #!/bin/bash
 
-while true 
+if [ "$1" == -h ];
+then
+ echo "Usage:"
+ echo "$0 <main tex file> [<file_or_folder1> <file_or_folder2>...]"
+ echo " Set the main TeX file to look for changes and folders (optional)"
+ echo " Default folders: ./data/ ./images/ ./img/ ./imgs/ ./plots/ "
+ exit 0
+fi
+
+if [ "$#" -lt 2 ];
+then
+ if [ "$#" -eq 1 ]
+ then
+  if [[ "$1" != *.tex ]]
+   then
+    echo "You need to input at least one TeX file"
+    exit 1
+   fi
+ else
+  echo "You need to input at least one TeX file"
+  exit 1
+ fi
+fi
+
+echo "$@"
+
+while true
 do
    # put here the files you want to watch for changes
-   inotifywait -e close_write paper.txt ./data/ ./images/ ./plots/
+   inotifywait -e close_write "$@"
    # execute next commands
-   make
+   latexmk -pdf
 done
