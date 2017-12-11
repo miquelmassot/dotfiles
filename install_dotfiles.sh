@@ -12,4 +12,8 @@ ln -sfv $DIR/.gitconfig $HOME/.gitconfig
 ln -sfv $DIR/.gitignore_global $HOME/.gitignore_global
 # Link all scripts in .local/bin
 ln -sfv $DIR/scripts/* $HOME/.local/bin/.
+
+mkdir -p $HOME/.config/terminator
+ln -sfv $DIR/config $HOME/.config/terminator/config
+
 echo "Done!"

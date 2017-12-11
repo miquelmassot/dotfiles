@@ -1,6 +1,6 @@
 [user]
   name = Miquel Massot
-  email = miquel.massot@uib.cat
+	email = miquel.massot@gmail.com
 [github]
   user = miquelmassot
 [color]
@@ -47,3 +47,5 @@
   default = matching
 [merge]
 	ff = true
+[diff]
+	submodule = log

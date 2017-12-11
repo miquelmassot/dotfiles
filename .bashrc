@@ -103,40 +103,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+#nvim 
+export VTE_VERSION="100"
+
 #local binaries
 export PATH=/home/miquel/.local/bin:$PATH
-#CUDA
-export PATH=/usr/local/cuda-7.0/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-7.0/lib64:$LD_LIBRARY_PATH
-export CUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-7.0
-#BUNDLER
-export PATH=$PATH:/home/miquel/opt/sfm/bundler_sfm/utils
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/miquel/opt/sfm/bundler_sfm/bin
-#GMT
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-export PATH=/usr/lib/gmt/bin:$PATH
-#VRip
-export LD_LIBRARY_PATH=/home/miquel/lib/vrippack-0.31/lib/linux:$LD_LIBRARY_PATH
-export PATH=/home/miquel/lib/vrippack-0.31/bin:$PATH
-export VRIP_DIR=/home/miquel/lib/vrippack-0.31/src/vrip
-export VRIP_TCL_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tcl8.4
-export VRIP_TK_LIBRARY=/home/miquel/lib/vrippack-0.31/lib/linux/tk8.4
-#MATLAB
-export PATH=$PATH:/usr/local/MATLAB/R2014b/bin
-#WEKA
-export WEKA_HOME=~/opt/weka-3-6-12
-export PATH=$PATH:~/opt/weka-3-6-12
-export CLASSPATH=$CLASSPATH:~/opt/weka-3-6-12
-### Add Fritzing!
-export PATH="$PATH:/opt/fritzing"
-### Add Eagle
-export PATH="$PATH:/opt/eagle/bin"
-### Add eclipse
-export PATH="$PATH:/opt/eclipse"
-### Add sherlock
-export PATH="$PATH:/home/miquel/opt/sherlock"
-# added by travis gem
-[ -f /home/miquel/.travis/travis.sh ] && source /home/miquel/.travis/travis.sh
 
 #colored xterm
 export TERM=xterm-256color
@@ -144,21 +115,26 @@ export TERM=xterm-256color
 #uncrustify
 export UNCRUSTIFY_CONFIG=~/.uncrustify_config
 
-# Oculus SDK
-export OCULUS_SDK_ROOT_DIR=~/oculus/oculus_sdk
+# Enable ccache to speed up compilation time
+export PATH=/usr/lib/ccache:$PATH
+export PATH=$HOME/bin:$PATH
+export CCACHE_DIR=$HOME/.ccache
+export CCACHE_TEMPDIR=$HOME/.ccache
 
 #ROS
 unset ROS_MASTER_URI
 unset ROS_IP
 unset ROS_HOSTNAME
-export ROS_PARALLEL_JOBS='-j4 -l4'
-export EDITOR=subl
+export ROS_PARALLEL_JOBS='-j2 -l2'
+#export EDITOR=subl
+export EDITOR=vi
 export ROSCONSOLE_FORMAT='[${severity}]: ${message}'
+export ROSLAUNCH_SSH_UNKNOWN=1
 
 ######################
 # SOURCE ROS VERSION #
 ######################
-source ~/workspace/indigo/devel/setup.bash
+source ~/ws/kinetic/devel/setup.bash
 
 ################
 # SETUP ROS IP #
@@ -167,7 +143,8 @@ export ROS_IP=`ifconfig  | grep 'inet ' | grep -v '127.0.0.1' | cut -d: -f2 | aw
 if [[ -z "$ROS_IP" ]]; then
   export ROS_IP=127.0.0.1
 fi
-#export ROS_IP=192.168.1.173
+#export ROS_IP=192.168.1.170
+export ROS_IP=127.0.0.1
 
 
 ###############
@@ -176,8 +153,14 @@ fi
 #export ROS_MASTER_URI=http://192.168.1.181:11311
 #export ROS_MASTER_URI=http://192.168.1.180:11311
 #export ROS_MASTER_URI=http://192.168.1.205:11311 # Sparus
+#export ROS_MASTER_URI=http://192.168.1.207:11311 # Sparus
 #export ROS_MASTER_URI=http://pul.uib.es:11311
 #export ROS_MASTER_URI=http://192.168.1.100:11311
+#export ROS_MASTER_URI=http://192.168.1.51:11311 # G500
+#export ROS_MASTER_URI=http://192.168.1.61:11311 # S2 Girona
+
+#export ROS_MASTER_URI=http://dfki-robot:11311
+#export ROS_MASTER_URI=http://tno-robot:11311
+#export ROS_MASTER_URI=http://192.168.1.204:11311
 
 #turbot
-

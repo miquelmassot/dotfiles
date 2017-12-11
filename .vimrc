@@ -10,15 +10,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
-Plugin 'tpope/vim-fugitive'
-Plugin 'taketwo/vim-ros'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'taketwo/vim-ros'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tyok/nerdtree-ack'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'mileszs/ack.vim'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'mrtazz/DoxygenToolkit.vim'
+" Plugin 'tyok/nerdtree-ack'
+" Plugin 'jistr/vim-nerdtree-tabs'
+" Plugin 'mileszs/ack.vim'
+" Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'vim-scripts/taglist.vim'
+" Plugin 'mrtazz/DoxygenToolkit.vim'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'xuhdev/vim-latex-live-preview'
 
@@ -195,9 +195,10 @@ let Tlist_Use_Right_Window = 1
 map <F10> :NERDTreeToggle<cr>
 vmap <F10> <esc>:NERDTreeToggle<cr>
 imap <F10> <esc>:NERDTreeToggle<cr>
-autocmd BufNew * wincmd l
-autocmd vimenter * NERDTree
-autocmd vimenter * wincmd p
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+
 " Navigation list
 map <F12> :TlistToggle <RETURN>
 
@@ -216,7 +217,7 @@ let g:DoxygenToolkit_returnTag="@returns   "
 let g:DoxygenToolkit_blockHeader="-------------------------------"
 let g:DoxygenToolkit_blockFooter="---------------------------------"
 let g:DoxygenToolkit_authorName="Miquel Massot"
-let g:DoxygenToolkit_licenseTag="Copyright (C) 2015 Miquel Massot <miquel.massot@uib.cat>\<enter>\<enter>"
+let g:DoxygenToolkit_licenseTag="Copyright (C) 2017 Miquel Massot <miquel.massot@uib.cat>\<enter>\<enter>"
 let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "This program is free software; you can redistribute it and/or modify\<enter>"
 let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "it under the terms of the GNU General Public License as published by\<enter>"
 let g:DoxygenToolkit_licenseTag=g:DoxygenToolkit_licenseTag . "the Free Software Foundation; either version 2 of the License, or\<enter>"
