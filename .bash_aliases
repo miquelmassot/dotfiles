@@ -47,21 +47,21 @@ alias pulgarcito-mount='sshfs miquel@192.168.1.100:.  /mnt/pulgarcito -p 2200'
 alias pulgarcito-matlab='ssh -p 2200 -XY -t miquel@192.168.1.100 "matlab" '
 alias pulgarcito-firefox-proxy='ssh -C2qTnN -D 8080 miquel@pul.uib.es'
 alias pulgarcito-ssh-ros='ssh -XY -p 2200 ros@192.168.1.100'
-alias pulgarcito-ssh-miquel='ssh -XY -p 2200 -t miquel@192.168.1.100 "byobu"'
+alias pulgarcito-ssh='ssh -XY -p 2200 -t miquel@192.168.1.100 "byobu"'
 alias pulgarcito-sync='rsync -rv /home/miquel/ws/kinetic/src/ /mnt/puldata/ros/kinetic/src'
 
 # SPARUS II and NUC
-alias sparus-ping='ping 192.168.1.205'
-alias sparus-ssh='ssh -XY sparus@192.168.1.205'
-alias sparus-ntpdate='sudo ntpdate -bu 192.168.1.205'
+alias turbot-ping='ping 192.168.1.205'
+alias turbot-ssh='ssh -XY sparus@192.168.1.205'
+alias turbot-ntpdate='sudo ntpdate -bu 192.168.1.205'
 
-alias sparus-ssh-nuc='ssh -XY sparus@192.168.1.206'
-alias sparus-ping-nuc='ping 192.168.1.206'
-alias sparus-ntpdate-nuc='sudo ntpdate -bu 192.168.1.206'
+alias turbot-ssh-nuc='ssh -XY sparus@192.168.1.206'
+alias turbot-ping-nuc='ping 192.168.1.206'
+alias turbot-ntpdate-nuc='sudo ntpdate -bu 192.168.1.206'
 
-alias catamaran-ping='ping 192.168.1.207'
-alias catamaran-ssh='ssh -XY catamaran@192.168.1.207'
-alias catamaran-ntpdate='sudo ntpdate -bu 192.168.1.207'
+alias xiroi-ping='ping 192.168.1.207'
+alias xiroi-ssh='ssh -XY catamaran@192.168.1.207'
+alias xiroi-ntpdate='sudo ntpdate -bu 192.168.1.207'
 
 # Functions
 function build_and_make
