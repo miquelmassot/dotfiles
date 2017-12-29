@@ -1,0 +1,2 @@
+#!/bin/bash
+shfs -o allow_other,IdentityFile=/home/miquel/.ssh/miquelATuib miquel@192.168.1.100:/data -p 2200 /mnt/puldata
