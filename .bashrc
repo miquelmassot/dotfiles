@@ -103,7 +103,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#nvim 
+#nvim
 export VTE_VERSION="100"
 
 #local binaries
@@ -120,6 +120,26 @@ export PATH=/usr/lib/ccache:$PATH
 export PATH=$HOME/bin:$PATH
 export CCACHE_DIR=$HOME/.ccache
 export CCACHE_TEMPDIR=$HOME/.ccache
+
+# Handle SSH agent
+SSH_ENV="$HOME/.ssh/environment"
+function start_agent {
+  echo "Initialising new SSH agent..."
+  /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+  echo succeeded
+  chmod 600 "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-add -t 432000 ~/.ssh/miquelATuib;
+}
+
+if [ -f "${SSH_ENV}" ]; then
+  . "${SSH_ENV}" > /dev/null
+  ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+    start_agent;
+  }
+else
+  start_agent;
+fi
 
 #ROS
 unset ROS_MASTER_URI
@@ -144,7 +164,7 @@ if [[ -z "$ROS_IP" ]]; then
   export ROS_IP=127.0.0.1
 fi
 #export ROS_IP=192.168.1.170
-export ROS_IP=127.0.0.1
+#export ROS_IP=127.0.0.1
 
 
 ###############
@@ -158,6 +178,7 @@ export ROS_IP=127.0.0.1
 #export ROS_MASTER_URI=http://192.168.1.100:11311
 #export ROS_MASTER_URI=http://192.168.1.51:11311 # G500
 #export ROS_MASTER_URI=http://192.168.1.61:11311 # S2 Girona
+export ROS_MASTER_URI=http://192.168.1.25:11411 # rompetechos
 
 #export ROS_MASTER_URI=http://dfki-robot:11311
 #export ROS_MASTER_URI=http://tno-robot:11311

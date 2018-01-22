@@ -38,8 +38,9 @@ alias git-remove-deleted='git ls-files --deleted -z | xargs -0 git rm'
 # SRV Lab servers
 alias rompetechos-ping='ping 192.168.1.25'
 alias rompetechos-wake='sudo etherwake -i enp5s0 4c:cc:6a:6b:83:c0'
-alias rompetechos-ssh='ssh -XY turbot@192.168.1.25'
-alias rompetechos-mount='sshfs turbot@192.168.1.25:.  /mnt/rompetechos'
+alias rompetechos-ssh='ssh -XY miquel@192.168.1.25'
+alias rompetechos-mount='sshfs miquel@192.168.1.25:.  /mnt/rompetechos'
+alias rompetechos-umount='umount /mnt/rompetechos'
 
 alias pulgarcito-ping='ping 192.168.1.100'
 alias pulgarcito-wake='sudo etherwake -i enp5s0 00:e3:e0:08:7f:21'
@@ -48,6 +49,7 @@ alias pulgarcito-matlab='ssh -p 2200 -XY -t miquel@192.168.1.100 "matlab" '
 alias pulgarcito-firefox-proxy='ssh -C2qTnN -D 8080 miquel@pul.uib.es'
 alias pulgarcito-ssh-ros='ssh -XY -p 2200 ros@192.168.1.100'
 alias pulgarcito-ssh='ssh -XY -p 2200 -t miquel@192.168.1.100 "byobu"'
+alias pulgarcito-ssh-external='ssh -XY -p 2200 -t miquel@pul.uib.es "byobu"'
 alias pulgarcito-sync='rsync -rv /home/miquel/ws/kinetic/src/ /mnt/puldata/ros/kinetic/src'
 
 # SPARUS II and NUC
@@ -63,7 +65,19 @@ alias xiroi-ping='ping 192.168.1.207'
 alias xiroi-ssh='ssh -XY catamaran@192.168.1.207'
 alias xiroi-ntpdate='sudo ntpdate -bu 192.168.1.207'
 
+alias wifi-list='nmcli d wifi list'
+
 # Functions
+function wifi-disconnect-from
+{
+  nmcli c down id $1
+}
+
+function wifi-connect-to
+{
+  nmcli c up id $1
+}
+
 function build_and_make
 {
   if [ ! -f ./CMakeLists.txt ]; then
