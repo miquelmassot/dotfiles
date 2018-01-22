@@ -1,0 +1,7 @@
+.ssh/authorized_keys
+.ssh/known_hosts
+.ssh/miquelATuib
+.ssh/rosusersrv
+.ssh/travisci_rsa
+.vim/bundle/*
+
