@@ -27,7 +27,9 @@ alias reconfigure='rosrun rqt_reconfigure rqt_reconfigure'
 alias catkin_ignore_package='echo '"'"'Touching CATKIN_IGNORE'"'"'; echo '"'"'If you want this package to compile again, remove it'"'"'; touch CATKIN_IGNORE'
 alias catkin_list_ignored_packages='roscd; cd ..; find -name '"'"'CATKIN_IGNORE'"'"' -printf '"'"'%h\n'"'"' | sort -u'
 alias imgview-down='rosrun image_view image_view image:=/stereo_down/left/image_rect_color'
+alias imgview-down-s2='rosrun image_view image_view image:=/stereo_down/scaled_x2/left/image_rect_color'
 alias imgview-forward='rosrun image_view image_view image:=/stereo_forward/left/image_rect_color'
+alias imgview-forward-s2='rosrun image_view image_view image:=/stereo_forward/scaled_x2/left/image_rect_color'
 alias catmk-dist='CC="distcc gcc" CXX="distcc g++" catkin build -p$(distcc -j) -j$(distcc -j) --no-jobserver'
 
 # GIT
@@ -39,6 +41,7 @@ alias git-remove-deleted='git ls-files --deleted -z | xargs -0 git rm'
 alias rompetechos-ping='ping 192.168.1.25'
 alias rompetechos-wake='sudo etherwake -i enp5s0 4c:cc:6a:6b:83:c0'
 alias rompetechos-ssh='ssh -XY miquel@192.168.1.25'
+alias rompetechos-ssh-external='ssh -p 2200 -t miquel@pul.uib.es ssh miquel@192.168.1.25'
 alias rompetechos-mount='sshfs miquel@192.168.1.25:.  /mnt/rompetechos'
 alias rompetechos-umount='umount /mnt/rompetechos'
 
@@ -105,16 +108,14 @@ function imgview
   rosrun image_view image_view image:=$1
 }
 
-#alias sshoplab-fugu='ssh -XY oplab@157.82.157.208'
-#alias sshoplab-fugu-miquel='ssh -XY miquel@157.82.157.208'
-#alias sshfugu-c='ssh -XY -t ros@192.168.1.181 "screen -R miquel -D" '
-#alias sshfugu-c-wifi='ssh -XY -t ros@192.168.1.180 "screen -R miquel -D" '
-#alias sshfugu-f='ssh -XY -t user@192.168.1.170 "screen -R miquel -D" '
-#alias sshutokyo='ssh -XY -t oplab@157.82.157.230'
-#alias sshplotter='ssh -XY osl@137.195.182.236'
+function neptus
+{
+  cd /opt/lsts/neptus;
+  ./neptus.sh
+}
 
-#alias pingfugu-f='ping 192.168.1.170'
-#alias pingfugu-c='ping 192.168.1.181'
+#alias utokyo-ssh='ssh -XY -t oplab@157.82.157.230'
+#alias plotter-ssh='ssh -XY osl@137.195.182.236'
 
 # sync time with an ntp server. G500 in this case
 #alias sync-machines='sudo ntpdate -bu 192.168.1.51'

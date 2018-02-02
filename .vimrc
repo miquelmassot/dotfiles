@@ -10,17 +10,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 " Plugin 'Valloric/YouCompleteMe'
-" Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " Plugin 'taketwo/vim-ros'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'tyok/nerdtree-ack'
-" Plugin 'jistr/vim-nerdtree-tabs'
-" Plugin 'mileszs/ack.vim'
+Plugin 'tyok/nerdtree-ack'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mileszs/ack.vim'
 " Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'vim-scripts/taglist.vim'
-" Plugin 'mrtazz/DoxygenToolkit.vim'
-Plugin 'kien/ctrlp.vim'
-" Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mrtazz/DoxygenToolkit.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'guyzmo/notmuch-abook'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'tomasr/molokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -114,8 +120,8 @@ au BufNewFile,BufRead *.launch set filetype=xml
 
 " Colorscheme
 " let t_Co=16
-let g:molokai_original = 1
-set background=dark
+" let g:molokai_original = 1
+" set background=dark
 colorscheme molokai
 
 set ls=2
@@ -206,7 +212,9 @@ map <F12> :TlistToggle <RETURN>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 

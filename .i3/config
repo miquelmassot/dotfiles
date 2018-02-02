@@ -11,8 +11,8 @@
 
 set $mod Mod4
 
-#set $monitor HDMI-1-1
-set $monitor VGA-1-1
+set $monitor HDMI-1-1
+#set $monitor VGA-1-1
 set $laptop LVDS-1-1
 
 
@@ -95,6 +95,15 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
+# Show the sup-mail scratchpad window, if any.
+#bindsym mod4+s [title="^Sup ::"] scratchpad show
 
 set $ws1 "1:  www"
 set $ws2 "2:  code"

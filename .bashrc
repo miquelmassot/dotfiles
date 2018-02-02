@@ -103,9 +103,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#nvim
-export VTE_VERSION="100"
-
 #local binaries
 export PATH=/home/miquel/.local/bin:$PATH
 
@@ -128,8 +125,11 @@ unset ROS_HOSTNAME
 export ROS_PARALLEL_JOBS='-j2 -l2'
 #export EDITOR=subl
 export EDITOR=vi
-export ROSCONSOLE_FORMAT='[${severity}]: ${message}'
+export ROSCONSOLE_FORMAT='[${severity}] [${node}]: ${message}'
 export ROSLAUNCH_SSH_UNKNOWN=1
+
+# To enable tab completion, add the following to your '~/.bashrc':
+source /etc/bash_completion.d/catkin_tools-completion.bash
 
 ######################
 # SOURCE ROS VERSION #
