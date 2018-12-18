@@ -1,8 +1,9 @@
-# BASH aliases
+# BASH alias
 
 # General
 alias ..='cd ..'
 alias ...='cd ../..'
+alias cdd='cd `pwd -P`'
 alias make='make -j2'
 alias sbash='source ~/.bashrc'
 alias vbash='vi ~/.bashrc'
@@ -31,6 +32,7 @@ alias imgview-down-s2='rosrun image_view image_view image:=/stereo_down/scaled_x
 alias imgview-forward='rosrun image_view image_view image:=/stereo_forward/left/image_rect_color'
 alias imgview-forward-s2='rosrun image_view image_view image:=/stereo_forward/scaled_x2/left/image_rect_color'
 alias catmk-dist='CC="distcc gcc" CXX="distcc g++" catkin build -p$(distcc -j) -j$(distcc -j) --no-jobserver'
+alias cbqt='catkin build --profile qtcreator'
 
 # GIT
 alias gits='git status'
@@ -39,7 +41,7 @@ alias git-remove-deleted='git ls-files --deleted -z | xargs -0 git rm'
 
 # SRV Lab servers
 alias rompetechos-ping='ping 192.168.1.25'
-alias rompetechos-wake='sudo etherwake -i enp5s0 4c:cc:6a:6b:83:c0'
+alias rompetechos-wake='sudo etherwake -i enp60s0 4c:cc:6a:6b:83:c0'
 alias rompetechos-ssh='ssh -XY miquel@192.168.1.25'
 alias rompetechos-ssh-external='ssh -p 2200 -t miquel@pul.uib.es ssh miquel@192.168.1.25'
 alias rompetechos-mount='sshfs miquel@192.168.1.25:.  /mnt/rompetechos'
@@ -48,11 +50,12 @@ alias rompetechos-umount='umount /mnt/rompetechos'
 alias pulgarcito-ping='ping 192.168.1.100'
 alias pulgarcito-wake='sudo etherwake -i enp5s0 00:e3:e0:08:7f:21'
 alias pulgarcito-mount='sshfs miquel@192.168.1.100:.  /mnt/pulgarcito -p 2200'
+alias pulgarcito-bagfiles='sshfs miquel@192.168.1.100:/data/HD3/bagfiles/turbot  /mnt/bagfiles -p 2200'
 alias pulgarcito-matlab='ssh -p 2200 -XY -t miquel@192.168.1.100 "matlab" '
 alias pulgarcito-firefox-proxy='ssh -C2qTnN -D 8080 miquel@pul.uib.es'
 alias pulgarcito-ssh-ros='ssh -XY -p 2200 ros@192.168.1.100'
 alias pulgarcito-ssh='ssh -XY -p 2200 -t miquel@192.168.1.100 "byobu"'
-alias pulgarcito-ssh-external='ssh -XY -p 2200 -t miquel@pul.uib.es "byobu"'
+alias pulgarcito-ssh-external='ssh -XY -p 2200 -t miquel@pul.uib.es'
 alias pulgarcito-sync='rsync -rv /home/miquel/ws/kinetic/src/ /mnt/puldata/ros/kinetic/src'
 
 # SPARUS II and NUC
@@ -63,10 +66,33 @@ alias turbot-ntpdate='sudo ntpdate -bu 192.168.1.205'
 alias turbot-ssh-nuc='ssh -XY sparus@192.168.1.206'
 alias turbot-ping-nuc='ping 192.168.1.206'
 alias turbot-ntpdate-nuc='sudo ntpdate -bu 192.168.1.206'
+alias turbot-wake='sudo etherwake -i enp60s0 00:01:05:16:A1:89'
+alias turbot-wake-nuc='sudo etherwake -i enp60s0 f4:4d:30:63:08:e4'
+
+alias groundstation-ssh='ssh -XY turbot@192.168.1.170'
 
 alias xiroi-ping='ping 192.168.1.207'
 alias xiroi-ssh='ssh -XY catamaran@192.168.1.207'
 alias xiroi-ntpdate='sudo ntpdate -bu 192.168.1.207'
+alias xiroi-master='export ROS_MASTER_URI=http://192.168.1.207:11311'
+
+alias nas-ssh='ssh -XY admin@192.168.1.50'
+
+alias shore-soi-vpn='nmcli connection up Shore\ side\ SOI'
+alias hpc-falkor-ssh='ssh -XY hpc-cloud@10.23.14.214'
+alias hpc-shore-ssh='ssh hpc-cloud@10.23.14.225'
+alias shore-soi-close='nmcli connection down Shore\ side\ SOI'
+
+alias soton-vpn='globalprotect connect -p globalprotect.soton.ac.uk -u mfmc1e18'
+alias soton-vpn-disconnect='globalprotect disconnect'
+
+alias driftcam-ssh='ssh -XY driftcam@192.168.60.100'
+alias driftcam-ping='ping 192.168.60.100'
+
+alias oplab-insitu-mount='sudo mount.cifs //oplab-insitu.clients.soton.ac.uk/data /media/oplab-insitu -o credentials=/home/miquel/.smbcredentials,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
+alias oplab-insitu-umount='sudo umount /media/oplab-insitu'
+alias oplab-surf-mount='sudo mount.cifs //oplab-surf.clients.soton.ac.uk/data /media/oplab-surf -o credentials=/home/miquel/.smbcredentials,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw,vers=1.0'
+alias oplab-surf-umount='sudo umount /media/oplab-surf'
 
 alias wifi-list='nmcli d wifi list'
 
