@@ -89,10 +89,17 @@ alias soton-vpn-disconnect='globalprotect disconnect'
 alias driftcam-ssh='ssh -XY driftcam@192.168.60.100'
 alias driftcam-ping='ping 192.168.60.100'
 
-alias oplab-insitu-mount='sudo mount.cifs //oplab-insitu.clients.soton.ac.uk/data /media/oplab-insitu -o credentials=/home/miquel/.smbcredentials,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
-alias oplab-insitu-umount='sudo umount /media/oplab-insitu'
-alias oplab-surf-mount='sudo mount.cifs //oplab-surf.clients.soton.ac.uk/data /media/oplab-surf -o credentials=/home/miquel/.smbcredentials,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw,vers=1.0'
-alias oplab-surf-umount='sudo umount /media/oplab-surf'
+alias mount-oplab-insitu='sudo mount.cifs //oplab-insitu.clients.soton.ac.uk/data /media/remote/oplab-insitu -o credentials=/home/miquel/.credentials/.oplab,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
+alias mount-oplab-surf='sudo mount.cifs //oplab-surf.clients.soton.ac.uk/data /media/remote/oplab-surf -o credentials=/home/miquel/.credentials/.oplab,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
+alias mount-oplab-backup='sudo mount.cifs //oplab-backup.clients.soton.ac.uk/data /media/remote/oplab-backup -o credentials=/home/miquel/.credentials/.oplab,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
+alias mount-oplab-source='sudo mount.cifs //oplab-source.clients.soton.ac.uk/data /media/remote/oplab-source -o credentials=/home/miquel/.credentials/.oplab,uid=$(id -u),gid=$(id -g),forceuid,forcegid,rw'
+
+# -nNT — do not create a shell
+# -L from:host:to — creates tunnel from "host:from" and remote "to" ports
+# We use local port 9999 and remote port 445 (default SMB port)
+alias filestore-ssh-tunnel-'ssh soton -nNT -L localhost:9999:filestore.soton.ac.uk:445'
+alias mount-filestore='sudo mount.cifs //127.0.0.1/users/mfmc1e18 /media/remote/filestore -o credentials=~/.credentials/.soton_filestore,uid=$(id -u),gid=$(id -g),rw,port=9999'
+
 
 alias wifi-list='nmcli d wifi list'
 
